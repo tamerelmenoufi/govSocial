@@ -1,5 +1,5 @@
 <?php
-    include("{$_SERVER['DOCUMENT_ROOT']}/app/projectSocioEconomico/lib/includes.php");
+    include("{$_SERVER['DOCUMENT_ROOT']}/vns/govSocial/lib/includes.php");
 
     echo $query = "select *, DATE_ADD(data, INTERVAL 7 DAY) as intervalo from metas where DATE_ADD(data, INTERVAL 7 DAY) >= NOW()";
     $result = mysqli_query($con, $query);
