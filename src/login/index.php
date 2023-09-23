@@ -141,6 +141,12 @@ include("{$_SERVER['DOCUMENT_ROOT']}/vns/govSocial/lib/includes.php");
 }
 .btn-primary{
     background-color:#b9915f;
+    border:solid 1px #b9915f;
+}
+.btn-primary:hover{
+    background-color:#b9915f;
+    border:solid 1px #b9915f;
+    opacity:0.7;
 }
 </style>
 
