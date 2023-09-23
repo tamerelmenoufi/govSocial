@@ -139,6 +139,9 @@ include("{$_SERVER['DOCUMENT_ROOT']}/vns/govSocial/lib/includes.php");
 .forgot-password:focus{
     color: rgb(12, 97, 33);
 }
+.btn-primary{
+    background-color:#b9915f;
+}
 </style>
 
 <div class="pagina">
