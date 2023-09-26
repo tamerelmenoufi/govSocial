@@ -110,7 +110,7 @@
                         $D[] = "'".str_replace("'", "`", $v)."'";
                     }
                 }
-                $Cmd[] = ['comando' => "REPLACE INTO $ind (".implode(", ", $campos).") VALUES (".implode(", ",$D).")"];
+                $Cmd[] = ['comando' => "INSERT INTO $ind (".implode(", ", $campos).") VALUES (".implode(", ",$D).")"];
             }  
         }          
         

@@ -29,9 +29,8 @@
         unset($data['codigo']);
         unset($data['percentual']);
         unset($data['acao_relatorio']);
+
         $data['data_nascimento'] = dataMysql($data['data_nascimento']);
-
-
         $data['redes_sociais'] = preparaJson($data['redes_sociais']);
         $data['meio_transporte'] = preparaJson($data['meio_transporte']);
         $data['tipo_moradia'] = preparaJson($data['tipo_moradia']);
