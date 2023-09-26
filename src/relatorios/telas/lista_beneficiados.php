@@ -59,9 +59,6 @@
 <h5 class="Titulo<?=$md5?>"><?=$_SESSION['s_titulo']?></h5>
 <ul class="list-group">
 <?php
-
-
-
     $query = "select a.* from se a where {$where} {$filtro} limit 1000";
     $result = mysqli_query($con, $query);
     $t = 0;
