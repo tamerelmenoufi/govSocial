@@ -62,7 +62,7 @@
 
 
 
-    $query = "select a.* from se a where {$where} {$filtro}";
+    $query = "select a.* from se a where {$where} {$filtro} limit 1000";
     $result = mysqli_query($con, $query);
     $t = 0;
     while($s = mysqli_fetch_object($result)){
