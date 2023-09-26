@@ -126,6 +126,10 @@
   </div>
 </div>
 <?php
+        }else{
+?>
+            <center><h1 style="color:#a1a1a1">NÃO CONSTA</h1></center>
+<?php
         }
     }
 
