@@ -839,8 +839,9 @@
                             </div>
                             <?php
                             }
+                            if($_SESSION['ProjectSeLogin']->perfil != 'usr'){
                             ?>
-                            <!-- <div class="form-floating mb-3">
+                            <div class="form-floating mb-3">
                                 <select name="monitor_social" required id="monitor_social" class="form-control" >
                                     <option value="">::Selecione o Profissional</option>
                                     <?php
@@ -854,7 +855,10 @@
                                     ?>
                                 </select>
                                 <label for="monitor_social">Profissionais</label>
-                            </div> -->
+                            </div>
+                            <?php
+                            }
+                            ?>
 
                             <div class="form-floating mb-3">
                                 <?=montaRadio([
