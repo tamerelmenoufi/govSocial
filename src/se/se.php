@@ -163,7 +163,7 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <select disabled name="municipio" id="municipio" class="form-control" >
+                        <select name="municipio" id="municipio" class="form-control" >
                             <option value="">::Selecione o Município</option>
                             <?php
                                 $q = "select * from municipios order by municipio asc";
@@ -179,9 +179,18 @@
                     </div>
 
 
+                    <div class="form-floating mb-3">
+                        <select name="local" id="local" class="form-control" >
+                            <option value="">::Selecione a Zona</option>
+                            <option value="Urbano" <?=(($d->local == 'Urbano')?'selected':false)?>>Urbano</option>
+                            <option value="Rural" <?=(($d->local == 'Rural')?'selected':false)?>>Rural</option>
+                        </select>
+                        <label for="email">Zona</label>
+                    </div>
+
 
                     <div class="form-floating mb-3">
-                        <select disabled name="bairro_comunidade" id="bairro_comunidade" class="form-control" >
+                        <select name="bairro_comunidade" id="bairro_comunidade" class="form-control" >
                             <option value="">::Selecione o Bairro/Comunidade</option>
                             <?php
                                 $q = "select * from bairros_comunidades where municipio='{$d->municipio}' order by descricao asc";
@@ -196,14 +205,7 @@
                         <label for="email">Bairro / Comunidade</label>
                     </div>
 
-                    <div class="form-floating mb-3">
-                        <select disabled name="local" id="local" class="form-control" >
-                            <option value="">::Selecione a Zona</option>
-                            <option value="Urbano" <?=(($d->local == 'Urbano')?'selected':false)?>>Urbano</option>
-                            <option value="Rural" <?=(($d->local == 'Rural')?'selected':false)?>>Rural</option>
-                        </select>
-                        <label for="email">Zona</label>
-                    </div>
+
 
                     <div class="form-floating mb-3">
                         <input type="text" name="endereco" id="endereco" class="form-control" placeholder="Endereço" value="<?=$d->endereco?>">
@@ -934,6 +936,43 @@
             $("#cep").mask('99999-999');
             $("#data_nascimento").mask('99/99/9999');
             // $("#data").mask('99/99/9999');
+
+
+            var filtro = (municipio, tipo) => {
+                if(!municipio){
+                    $("#bairro_comunidade").html('<option value="">::Selecione a Localização::</option>');
+                    return false;
+                }
+                if(!tipo){
+                    $("#bairro_comunidade").html('<option value="">::Selecione a Localização::</option>');
+                    return false;
+                }
+                $.ajax({
+                    url:"src/se/filtro.php",
+                    type:"POST",
+                    data:{
+                        municipio,
+                        tipo,
+                        acao:'bairro_comunidade'
+                    },
+                    success:function(dados){
+                        $("#bairro_comunidade").html(dados);
+                    }
+                });
+            }
+
+            $("#local").change(function(){
+                municipio = $("#municipio").val();
+                local = $(this).val();
+                filtro(municipio, local);
+            });
+
+            $("#municipio").change(function(){
+                local = $("#local").val();
+                municipio = $(this).val();
+                filtro(municipio, local);
+            });
+
 
             <?php
             if($d->situacao == 'f'){
