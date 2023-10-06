@@ -833,7 +833,7 @@
         <div style="padding-bottom:50px;">
 
 
-            <div class="card border-warning">
+            <div class="card border-warning mb-3">
                 <h5 class="card-header">Avaliação do Técnico</h5>
                 <div class="card-body">
 
