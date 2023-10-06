@@ -154,7 +154,7 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" name="telefone" id="telefone" class="form-control" placeholder="telefone" value="<?=$d->telefone?>">
+                        <input type="text" name="telefone" id="telefone" class="form-control" placeholder="telefone" value="<?=preg_replace('/[^0-9]/', '', $d->telefone)?>">
                         <label for="telefone">Telefone*</label>
                     </div>
                     <div class="form-floating mb-3">
