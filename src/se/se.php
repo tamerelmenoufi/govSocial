@@ -826,80 +826,83 @@
                         <label for="opiniao_outros">Outras Opiniões / Detalhes (na estrutura do governo)</label>
                     </div>
 
-                    <div class="card border-warning">
-                        <h5 class="card-header">Avaliação do Técnico</h5>
-                        <div class="card-body">
-
-                            <?php
-                            if($_SESSION['ProjectSeLogin']->perfil == 'adm'){
-                            ?>
-                            <div class="form-floating mb-3">
-                                <input type="text" name="data" required id="data" class="form-control" placeholder="Data da Pesquisa" value="<?=dataBr($d->data)?>">
-                                <label for="data">Data da Pesquisa*</label>
-                            </div>
-                            <?php
-                            }
-                            if($_SESSION['ProjectSeLogin']->perfil != 'usr'){
-                            ?>
-                            <div class="form-floating mb-3">
-                                <select name="monitor_social" required id="monitor_social" class="form-control" >
-                                    <option value="">::Selecione o Profissional</option>
-                                    <?php
-                                        $q = "select * from usuarios where situacao = '1' and perfil = 'usr' order by nome asc";
-                                        $r = mysqli_query($con, $q);
-                                        while($s = mysqli_fetch_object($r)){
-                                    ?>
-                                    <option value="<?=$s->codigo?>" <?=(($d->monitor_social == $s->codigo)?'selected':false)?>><?=$s->nome?></option>
-                                    <?php
-                                        }
-                                    ?>
-                                </select>
-                                <label for="monitor_social">Profissionais</label>
-                            </div>
-                            <?php
-                            }
-                            ?>
-
-                            <div class="form-floating mb-3">
-                                <?=montaRadio([
-                                    'rotulo' => 'Situação da Pesquisa',
-                                    'campo' => 'situacao',
-                                    'vetor' => [
-                                        'Ruim',
-                                        'Bom',
-                                        'Ótimo',
-                                    ],
-                                    'dados' => $d->recepcao_entrevistado,
-                                    'exibir' => false,
-                                    'campo_destino' => false
-                                ])?>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <select name="situacao" required id="situacao" class="form-control" >
-                                    <option value="n" <?=(($d->situacao == 'n')?'selected':false)?>>Não Encontrado</option>
-                                    <option value="i" <?=(($d->situacao == 'i')?'selected':false)?>>Iniciada</option>
-                                    <option value="p" <?=(($d->situacao == 'p')?'selected':false)?>>Pendente</option>
-                                    <option value="c" <?=(($d->situacao == 'c')?'selected':false)?>>Concluida</option>
-                                    <?php
-                                    if($_SESSION['ProjectSeLogin']->perfil != 'usr'){
-                                    ?>
-                                    <option value="f" <?=(($d->situacao == 'f')?'selected':false)?>>Finalizada</option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
-                                <label for="situacao">Situação</label>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
 
         <div style="padding-bottom:50px;">
+
+
+            <div class="card border-warning">
+                <h5 class="card-header">Avaliação do Técnico</h5>
+                <div class="card-body">
+
+                    <?php
+                    if($_SESSION['ProjectSeLogin']->perfil == 'adm'){
+                    ?>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="data" required id="data" class="form-control" placeholder="Data da Pesquisa" value="<?=dataBr($d->data)?>">
+                        <label for="data">Data da Pesquisa*</label>
+                    </div>
+                    <?php
+                    }
+                    if($_SESSION['ProjectSeLogin']->perfil != 'usr'){
+                    ?>
+                    <div class="form-floating mb-3">
+                        <select name="monitor_social" required id="monitor_social" class="form-control" >
+                            <option value="">::Selecione o Profissional</option>
+                            <?php
+                                $q = "select * from usuarios where situacao = '1' and perfil = 'usr' order by nome asc";
+                                $r = mysqli_query($con, $q);
+                                while($s = mysqli_fetch_object($r)){
+                            ?>
+                            <option value="<?=$s->codigo?>" <?=(($d->monitor_social == $s->codigo)?'selected':false)?>><?=$s->nome?></option>
+                            <?php
+                                }
+                            ?>
+                        </select>
+                        <label for="monitor_social">Profissionais</label>
+                    </div>
+                    <?php
+                    }
+                    ?>
+
+                    <div class="form-floating mb-3">
+                        <?=montaRadio([
+                            'rotulo' => 'Situação da Pesquisa',
+                            'campo' => 'situacao',
+                            'vetor' => [
+                                'Ruim',
+                                'Bom',
+                                'Ótimo',
+                            ],
+                            'dados' => $d->recepcao_entrevistado,
+                            'exibir' => false,
+                            'campo_destino' => false
+                        ])?>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <select name="situacao" required id="situacao" class="form-control" >
+                            <option value="n" <?=(($d->situacao == 'n')?'selected':false)?>>Não Encontrado</option>
+                            <option value="i" <?=(($d->situacao == 'i')?'selected':false)?>>Iniciada</option>
+                            <option value="p" <?=(($d->situacao == 'p')?'selected':false)?>>Pendente</option>
+                            <option value="c" <?=(($d->situacao == 'c')?'selected':false)?>>Concluida</option>
+                            <?php
+                            if($_SESSION['ProjectSeLogin']->perfil != 'usr'){
+                            ?>
+                            <option value="f" <?=(($d->situacao == 'f')?'selected':false)?>>Finalizada</option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                        <label for="situacao">Situação</label>
+                    </div>
+
+                </div>
+            </div>
+
+
             <div obs class="form-floating mb-3">
                 <textarea name="observacoes" id="observacoes" class="form-control" placeholder="Observações" ><?=$d->observacoes?></textarea>
                 <label for="observacoes">Observações</label>
