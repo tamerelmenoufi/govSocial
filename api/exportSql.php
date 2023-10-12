@@ -2,7 +2,7 @@
 
     include("{$_SERVER['DOCUMENT_ROOT']}/vns/govSocial/lib/includes.php");
     
-    $delTab = ['dashboard', 'relatorios'];
+    $delTab = ['dashboard', 'relatorios','sisLog','logs'];
     $dataTable = ['usuarios']; 
 
     $query = "SELECT * FROM `COLUMNS` where TABLE_SCHEMA = 'app' and COLUMN_NAME != 'codigo' and TABLE_NAME not in('".implode("','", $delTab)."') order by TABLE_NAME";

@@ -135,3 +135,34 @@
         }
         return $sum;
     }
+
+    function sisLog($d){
+
+        global $con;
+    
+        $query = addslashes($d['query']);
+        $file = $d['file'];
+        $sessao = json_encode($d['sessao']);
+        $registro = $d['registro'];
+        $p = explode(" ",$query);
+        $operacao = strtoupper(trim($p[0]));
+        if(strtolower(trim($p[0])) == 'insert'){
+            $tabela =  strtolower(trim($p[2]));
+        }
+        if(strtolower(trim($p[0])) == 'update'){
+            $tabela =  strtolower(trim($p[1]));
+        }
+    
+        mysqli_query($con, "
+            INSERT INTO sisLog set 
+                                    file = '{$file}',
+                                    tabela = '{$tabela}',
+                                    operacao = '{$operacao}',
+                                    registro = '{$registro}',
+                                    sessao = '{$sessao}',
+                                    query = '{$query}',
+                                    data = NOW()
+        ");
+        
+    
+    }
