@@ -8,5 +8,11 @@
         while($d = mysqli_fetch_object($result)){
             $metas[] = $d->codigo;
         }
-        echo $q = "update se set meta = '0', monitor_social = '0' where codigo not in (".implode(", ", $metas).") and situacao not in ('c', 'f', 'n')";
+        if($metas){
+            echo $q = "update se set meta = '0', monitor_social = '0' where meta not in (".implode(", ", $metas).") and situacao not in ('c', 'f', 'n')";
+            mysqli_query($con, $q);
+            echo $q = "update metas set situacao = '0', deletado = '1' where codigo not in (".implode(", ", $metas).")";   
+            mysqli_query($con, $q);         
+        }
     }
+    //teste

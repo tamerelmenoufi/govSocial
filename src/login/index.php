@@ -139,15 +139,6 @@ include("{$_SERVER['DOCUMENT_ROOT']}/vns/govSocial/lib/includes.php");
 .forgot-password:focus{
     color: rgb(12, 97, 33);
 }
-.btn-primary{
-    background-color:#b9915f;
-    border:solid 1px #b9915f;
-}
-.btn-primary:hover{
-    background-color:#b9915f;
-    border:solid 1px #b9915f;
-    opacity:0.7;
-}
 </style>
 
 <div class="pagina">
@@ -193,7 +184,7 @@ include("{$_SERVER['DOCUMENT_ROOT']}/vns/govSocial/lib/includes.php");
 
 <script>
     $(function(){
-        Carregando('none');
+        // Carregando('none');
         AcaoBotao = ()=>{
             login = $("#login").val();
             senha = $("#senha").val();

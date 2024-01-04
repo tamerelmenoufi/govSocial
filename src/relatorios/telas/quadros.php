@@ -31,7 +31,7 @@
         }
 
         if($d->sem_metas){
-            $where = "where (a.monitor_social = 0 or a.meta = 0) and a.situacao in ('c', 'n')";
+            $where = "where (a.monitor_social = 0 or a.meta = 0) and a.situacao in ('c', 'n', 'f')";
         }else{
             $where = "where a.monitor_social > 0 and a.meta > 0";
         }
@@ -128,7 +128,7 @@
 <?php
         }else{
 ?>
-            <center><h1 style="color:#a1a1a1">NÃO CONSTA</h1></center>
+<center><h1 style="color:#a1a1a1">NÃO CONSTA</h1></center>
 <?php
         }
     }

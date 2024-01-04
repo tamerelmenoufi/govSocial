@@ -71,6 +71,9 @@
 <form id="form-<?= $md5 ?>">
     <div class="row">
         <div class="col">
+            <?php
+            if($_SESSION['ProjectSeLogin']->perfil != 'crd'){
+            ?>
 
             <div class="card p-3 mb-3">
                 <h5>Geral</h5>
@@ -116,10 +119,12 @@
                     <label for="bairro_comunidade">Bairro/Comunidade</label>
                 </div>
             </div>
+            <?php
+            }
+            ?>
 
             <div class="card p-3 mb-3">
                 <h5>Específico</h5>
-
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo" value="<?=$_SESSION['filtro_nome']?>">
                     <label for="nome">Nome*</label>
@@ -140,7 +145,6 @@
                     <input type="text" name="email" id="email" class="form-control" placeholder="E-mail" value="<?=$_SESSION['filtro_email']?>">
                     <label for="email">E-mail*</label>
                 </div>
-
             </div>
         </div>
     </div>

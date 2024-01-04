@@ -1,6 +1,47 @@
 <?php
     include("{$_SERVER['DOCUMENT_ROOT']}/vns/govSocial/lib/includes.php");
 
+    $CamposObrigatorios = [
+        'nome',
+        'cpf',
+        'rg',
+        'rg_orgao',
+        'data_nascimento',
+        'telefone',
+        'municipio',
+        'local',
+        'bairro_comunidade',
+        'endereco',
+        'cep',
+        'genero',
+        'estado_civil',
+        'redes_sociais',
+        'meio_transporte',
+        'tipo_imovel',
+        'tipo_moradia',
+        'quantidade_comodos',
+        'grau_escolaridade',
+        'curos_profissionais',
+        'intereese_curso',
+        'renda_mensal',
+        'renda_familiar',
+        'beneficio_social',
+        'servico_saude',
+        'condicoes_saude',
+        'vacina_covid',
+        'necessita_documentos',
+        'avaliacao_beneficios',
+        'atende_necessidades',
+        'opiniao_saude',
+        'opiniao_educacao',
+        'opiniao_cidadania',
+        'opiniao_infraestrutura',
+        'opiniao_assistencia_social',
+        'opiniao_direitos_humanos',
+        'opiniao_seguranca',
+        'opiniao_esporte_lazer'
+    ];
+
     function preparaJson($d){
 
         $D = explode(",",$d);
@@ -29,7 +70,7 @@
         unset($data['codigo']);
         unset($data['percentual']);
         unset($data['acao_relatorio']);
-
+        
         $data['data_nascimento'] = dataMysql($data['data_nascimento']);
         $data['redes_sociais'] = preparaJson($data['redes_sociais']);
         $data['meio_transporte'] = preparaJson($data['meio_transporte']);
@@ -62,7 +103,7 @@
 
         ////////////////////////////////PERCENTUAL/////////////////////////////////////
 
-        $tot = count($data);
+        $tot = count($CamposObrigatorios);
         $qt = 0;
         $remov = ['[""]', 'null', '0', '0.00', ' '];
         foreach ($data as $name => $value) {
@@ -70,11 +111,14 @@
             // if(is_array($value)) {
             //     $value = json_encode($value,JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
             // }
-            $qt = ((trim(str_replace($remov, false,$value)))?($qt+1):$qt);
+            // $qt = ((trim(str_replace($remov, false,$value)))?($qt+1):$qt);
+            if(in_array($name, $CamposObrigatorios) and (trim(str_replace($remov, false,$value))) ){
+                $qt = ($qt+1);
+            }
         }
             $pct = (100*$qt/$tot);
             $campos[] = "percentual = '{$pct}'";
-            $campos[] = "acao_relatorio = '0'";
+            // $campos[] = "acao_relatorio = '0'";
 
         //////////////////////////////////////////////////////////////////////////////
 

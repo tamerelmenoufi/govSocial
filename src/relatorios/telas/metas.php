@@ -71,7 +71,10 @@
 
 </style>
 <?php
-    if($_SESSION['ProjectSeLogin']->perfil == 'adm'){
+    if(
+        $_SESSION['ProjectSeLogin']->perfil == 'adm' or
+        $_SESSION['ProjectSeLogin']->perfil == 'crd'
+    ){
 ?>
 <div class="alert alert-dark" role="alert">
     Sugestão para Cadastro de novos Beneficiados 

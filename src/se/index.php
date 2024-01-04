@@ -195,6 +195,7 @@
                             role="button"
                             aria-controls="offcanvasDireita"
                             pesquisaSe="<?=$d->codigo?>"
+                            <?=(($_SESSION['ProjectSeLogin']->perfil == 'crd' and in_array($d->situacao,['c']))?'disabled':false)?>
                         >
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
@@ -206,6 +207,7 @@
                             role="button"
                             aria-controls="offcanvasDireita"
                             SeEf="<?=$d->codigo?>"
+                            <?=(($_SESSION['ProjectSeLogin']->perfil == 'crd' and in_array($d->situacao,['c','n']))?'disabled':false)?>
                         >
                             <i class="fa-solid fa-users"></i>
                         </button>

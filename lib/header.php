@@ -12,4 +12,4 @@
 <script src="lib/vendor/chart/chart.min.js" ></script>
 
 <link href="lib/css/app.css" rel="stylesheet">
-<script src="lib/js/app.js" ></script>
+<script src="lib/js/app.js?<?=date("YmdHis")?>" ></script>

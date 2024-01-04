@@ -4,7 +4,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST))
     $_POST = json_decode(file_get_contents('php://input'), true);
 
-    // $_POST['perfil'][0]['codigo'] = 248;
+    // if(!$_POST['perfil'][0]['codigo']) $_POST['perfil'][0]['codigo'] = 248;
 
 
     $q = "select * from metas where data >= DATE_ADD(NOW(), INTERVAL -7 DAY) and data <= NOW() and usuario = '{$_POST['perfil'][0]['codigo']}' and situacao = '1' and deletado != '1'";
@@ -39,7 +39,7 @@
     }
 
 
-    $query = "SELECT * FROM `se` where meta in ($metas)"; /* and situacao not in ('c', 'f', 'n') */
+    $query = "SELECT * FROM `se` where meta in ($metas)";  /*and situacao not in ('c', 'f', 'n')*/
     $result = mysqli_query($con, $query);
 
     // $Cmd[] = ['comando' => "DELETE FROM se"];
@@ -79,7 +79,12 @@
     $reg['municipios'] = (($reg['municipios'])?" and codigo in (". @implode(",", $reg['municipios']).")":false);
     $reg['metas'] = (($metas)?" and codigo in (". $metas.")":false);
     $reg['mensagens'] = " and situacao = '1' and deletado != '1' ";
-    
+
+    if($metas){
+        $Cmd[] = ['comando' => "DELETE FROM metas WHERE codigo not in ($metas)"];
+    }else{
+        $Cmd[] = ['comando' => "DELETE FROM metas"];
+    }
 
     $query = "SELECT * FROM `COLUMNS` where TABLE_SCHEMA = 'app' and TABLE_NAME in('".implode("','", $addTab)."') order by TABLE_NAME";
  

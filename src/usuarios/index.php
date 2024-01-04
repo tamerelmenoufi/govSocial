@@ -16,17 +16,41 @@
       // $query = "delete from usuarios where codigo = '{$_POST['delete']}'";
       $query = "update usuarios set deletado = '1' where codigo = '{$_POST['delete']}'";
       mysqli_query($con, $query);
+      sisLog(
+        [
+            'query' => $query,
+            'file' => $_SERVER["PHP_SELF"],
+            'sessao' => $_SESSION,
+            'registro' => $_POST['delete']
+        ]
+    );
     }
 
     if($_POST['situacao']){
       $query = "update usuarios set situacao = '{$_POST['opc']}' where codigo = '{$_POST['situacao']}'";
       mysqli_query($con, $query);
+      sisLog(
+        [
+            'query' => $query,
+            'file' => $_SERVER["PHP_SELF"],
+            'sessao' => $_SESSION,
+            'registro' => $_POST['situacao']
+        ]
+    );
       exit();
     }
 
     if($_POST['acao'] == 'pac'){
       $query = "update usuarios set pac = '{$_POST['pac']}' where codigo = '{$_POST['usu']}'";
       mysqli_query($con, $query);
+      sisLog(
+        [
+            'query' => $query,
+            'file' => $_SERVER["PHP_SELF"],
+            'sessao' => $_SESSION,
+            'registro' => $_POST['usu']
+        ]
+    );
     }
 
     if($_POST['acao'] == 'filtro'){
@@ -41,7 +65,7 @@
     $where = false;
     if($_SESSION['usuarioBuscaCampo'] and $_SESSION['usuarioBusca']){
       if($_SESSION['usuarioBuscaCampo'] == 'pac'){
-        $where = " and (a.{$_SESSION['usuarioBuscaCampo']} like '%{$_SESSION['usuarioBusca']}%' or b.{$_SESSION['usuarioBuscaCampo']} like '%{$_SESSION['usuarioBusca']}%')";
+        $where = " and (a.{$_SESSION['usuarioBuscaCampo']} = '{$_SESSION['usuarioBusca']}' or b.{$_SESSION['usuarioBuscaCampo']} = '{$_SESSION['usuarioBusca']}')";
       }else{
         $where = " and a.{$_SESSION['usuarioBuscaCampo']} like '%{$_SESSION['usuarioBusca']}%'";
       }
@@ -182,7 +206,7 @@
                   </td>
                   <td>
                     <?php
-                      if(in_array($_SESSION['ProjectSeLogin']->perfil, ['adm', 'sup'])){
+                    if(in_array($_SESSION['ProjectSeLogin']->perfil, ['adm', 'sup']) and $d->perfil == 'usr'){
                     ?>
                     <button
                       class="btn btn-primary"
@@ -362,6 +386,7 @@
 
         $("button[metas]").click(function(){
             usuario = $(this).attr("metas");
+            Carregando()
             $.ajax({
                 url:"src/metas/index.php",
                 type:"POST",

@@ -1,6 +1,8 @@
 <?php
     include("{$_SERVER['DOCUMENT_ROOT']}/vns/govSocial/lib/includes.php");
 
+    exit();
+
 
     //Questionários
 

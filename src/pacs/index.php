@@ -6,11 +6,27 @@
       // $query = "delete from pacs where codigo = '{$_POST['delete']}'";
       $query = "update pacs set deletado = '1' where codigo = '{$_POST['delete']}'";
       mysqli_query($con, $query);
+      sisLog(
+        [
+            'query' => $query,
+            'file' => $_SERVER["PHP_SELF"],
+            'sessao' => $_SESSION,
+            'registro' => $_POST['delete']
+        ]
+    );
     }
 
     if($_POST['situacao']){
       $query = "update pacs set situacao = '{$_POST['opc']}' where codigo = '{$_POST['situacao']}'";
       mysqli_query($con, $query);
+      sisLog(
+        [
+            'query' => $query,
+            'file' => $_SERVER["PHP_SELF"],
+            'sessao' => $_SESSION,
+            'registro' => $_POST['situacao']
+        ]
+    );
       exit();
     }
 

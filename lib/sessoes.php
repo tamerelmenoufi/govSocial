@@ -10,4 +10,11 @@
         }
     }
 
-    echo base64_encode(json_encode($_SESSION));
+    // echo base64_encode(json_encode($_SESSION));
+
+
+    if($_SESSION['ProjectSeLogin']->codigo > 0){
+        echo base64_encode(json_encode($_SESSION)); 
+    }else{
+        echo 'error';
+    }

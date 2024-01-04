@@ -28,10 +28,26 @@
             $query = "update se_estrutura_familiar set {$attr} where codigo = '{$_POST['codigo']}'";
             mysqli_query($con, $query);
             $cod = $_POST['codigo'];
+            sisLog(
+                [
+                    'query' => $query,
+                    'file' => $_SERVER["PHP_SELF"],
+                    'sessao' => $_SESSION,
+                    'registro' => $cod
+                ]
+            );
         }else{
             $query = "insert into se_estrutura_familiar set data_cadastro = NOW(), {$attr}";
             mysqli_query($con, $query);
             $cod = mysqli_insert_id($con);
+            sisLog(
+                [
+                    'query' => $query,
+                    'file' => $_SERVER["PHP_SELF"],
+                    'sessao' => $_SESSION,
+                    'registro' => $cod
+                ]
+            );
         }
 
         $retorno = [

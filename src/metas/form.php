@@ -10,11 +10,13 @@
         unset($data['codigo']);
         unset($data['acao']);
         unset($data['senha']);
+        unset($data['data']);
 
         foreach ($data as $name => $value) {
             $attr[] = "{$name} = '" . mysqli_real_escape_string($con, $value) . "'";
         }
         $attr[] = "usuario = '" . $_SESSION['usuario'] . "'";
+        $attr[] = "data = '" . dataMysql($_POST['data']) . "'";
 
         // if(!$_POST['codigo']){
         //     $attr[] = "data = NOW()";
@@ -27,10 +29,26 @@
             $query = "update metas set {$attr} where codigo = '{$_POST['codigo']}'";
             mysqli_query($con, $query);
             $cod = $_POST['codigo'];
+            sisLog(
+                [
+                    'query' => $query,
+                    'file' => $_SERVER["PHP_SELF"],
+                    'sessao' => $_SESSION,
+                    'registro' => $cod
+                ]
+            );
         }else{
             $query = "insert into metas set {$attr}";
             mysqli_query($con, $query);
             $cod = mysqli_insert_id($con);
+            sisLog(
+                [
+                    'query' => $query,
+                    'file' => $_SERVER["PHP_SELF"],
+                    'sessao' => $_SESSION,
+                    'registro' => $cod
+                ]
+            );
         }
 
         $retorno = [
@@ -102,7 +120,7 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input required type="date" name="data" id="data" class="form-control" placeholder="Data Inicial da Meta" value="<?=$d->data?>">
+                    <input required type="text" name="data" id="data" class="form-control" placeholder="Data Inicial da Meta" value="<?=dataBr($d->data)?>">
                     <label for="data">Data Inicial da Meta</label>
                 </div>
 
@@ -132,6 +150,7 @@
 
             $("#cpf").mask("999.999.999-99");
             $("#telefone").mask("(99) 99999-9999");
+            $("#data").mask("99/99/9999");
 
 
             var filtro = (bairro_comunidade, zona) => {

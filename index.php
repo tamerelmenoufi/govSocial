@@ -19,12 +19,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="img/icone.png">
-    <title>Gov+Social - AADESAM</title>
+    <title>AADESAM - MapCenso</title>
     <?php
     include("lib/header.php");
     ?>
   </head>
-  <body>
+  <body translate="no">
 
     <div class="Carregando">
         <div><i class="fa-solid fa-rotate fa-pulse"></i></div>
@@ -38,7 +38,7 @@
 
     <script>
         $(function(){
-            Carregando();
+            // Carregando();
             $.ajax({
                 url:"<?=$url?>",
                 success:function(dados){

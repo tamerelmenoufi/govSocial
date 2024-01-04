@@ -11,23 +11,74 @@
         unset($data['codigo']);
         unset($data['acao']);
         unset($data['data_nascimento']);
-        // unset($data['data']);
+        unset($data['data']);
         // unset($data['monitor_social']);
         unset($data['percentual']);
+        unset($data['situacao']);
+        unset($data['acao_relatorio']);
 
-        $tot = 53;
+        $CamposObrigatorios = [
+            'nome',
+            'cpf',
+            'rg',
+            'rg_orgao',
+            'data_nascimento',
+            'telefone',
+            'municipio',
+            'local',
+            'bairro_comunidade',
+            'endereco',
+            'cep',
+            'genero',
+            'estado_civil',
+            'redes_sociais',
+            'meio_transporte',
+            'tipo_imovel',
+            'tipo_moradia',
+            'quantidade_comodos',
+            'grau_escolaridade',
+            'curos_profissionais',
+            'intereese_curso',
+            'renda_mensal',
+            'renda_familiar',
+            'beneficio_social',
+            'servico_saude',
+            'condicoes_saude',
+            'vacina_covid',
+            'necessita_documentos',
+            'avaliacao_beneficios',
+            'atende_necessidades',
+            'opiniao_saude',
+            'opiniao_educacao',
+            'opiniao_cidadania',
+            'opiniao_infraestrutura',
+            'opiniao_assistencia_social',
+            'opiniao_direitos_humanos',
+            'opiniao_seguranca',
+            'opiniao_esporte_lazer'
+        ];
+
+        $tot = count($CamposObrigatorios);
         $qt = 0;
         $remov = ['[""]', 'null', '0', '0.00', ' ', 0, null];
         $log = false;
+        $Lixo = false;
         foreach ($data as $name => $value) {
             if(is_array($value)) {
                 $value = json_encode($value,JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
             }
             // $qt = (($value)?($qt+1):$qt);
-            $qt = ((trim(str_replace($remov, false,$value)))?($qt+1):$qt);
+            if(in_array($name, $CamposObrigatorios) and (trim(str_replace($remov, false,$value))) ){
+            $qt = ($qt+1);
+            $Lixo = $Lixo.$name."\n";
+            }
             $attr[] = "{$name} = '" . mysqli_real_escape_string($con, $value) . "'";
         }
+        if(dataMysql($_POST['data_nascimento'])){
+            $qt = ($qt+1);
+        }
 
+            file_put_contents('lixo.txt', $Lixo);
 
             $pct = (100*$qt/$tot);
             $attr[] = "percentual = '" . $pct . "'";
@@ -37,14 +88,28 @@
             // $attr[] = "monitor_social = '{$_SESSION['ProjectSeLogin']->codigo}'";
             $attr[] = "coordenador = '{$_SESSION['ProjectSeLogin']->coordenador}'";
             $attr[] = "acao = '0'";
-            $attr[] = "acao_relatorio = '0'";
+            // $attr[] = "acao_relatorio = '0'";
 
             if($_POST['beneficiario_encontrado'] == 'Não'){
-                $attr[] = "situacao = 'n'";
+                $situacao = "situacao = 'n'";
+            }else if($_POST['beneficiario_encontrado'] == 'Sim' and $_POST['situacao'] == 'n'){
+                $situacao = "situacao = 'p'";
+            }else{
+                $situacao = "situacao = '{$_POST['situacao']}'";
             }
-            if($_POST['situacao'] == 'n'){
-                $attr[] = "beneficiario_encontrado = 'Não'";
+
+            // if($_POST['situacao'] == 'n' and $_POST['beneficiario_encontrado'] == 'Não'){
+            //     $attr[] = "beneficiario_encontrado = 'Não'";
+            // }
+
+            // if($_POST['situacao'] == 'f'){
+            //     $situacao = "situacao = 'f'";
+            // }
+
+            if($situacao){
+                $attr[] = $situacao;
             }
+
             // if($pct == 100){
             //     $attr[] = "pesquisa_realizada = 'Sim'";
             //     $attr[] = "situacao = 'c'";
@@ -66,10 +131,26 @@
             $query = "update se set {$attr} where codigo = '{$_POST['codigo']}'";
             mysqli_query($con, $query);
             $cod = $_POST['codigo'];
+            $sisLogo = sisLog(
+                [
+                    'query' => $query,
+                    'file' => $_SERVER["PHP_SELF"],
+                    'sessao' => $_SESSION,
+                    'registro' => $cod
+                ]
+            );
         }else{
             $query = "insert into se set data_cadastro = NOW(), {$attr}";
             mysqli_query($con, $query);
             $cod = mysqli_insert_id($con);
+            $sisLogo = sisLog(
+                [
+                    'query' => $query,
+                    'file' => $_SERVER["PHP_SELF"],
+                    'sessao' => $_SESSION,
+                    'registro' => $cod
+                ]
+            );
         }
 
         mysqli_query($con, "update municipios set acao = '0' where codigo = '{$data['municipio']}'");
@@ -79,7 +160,7 @@
             'status' => true,
             'codigo' => $cod,
             'mensagem' => "Pesquisa registrada com sucesso!",
-            'query' => $query,
+            'query' => $sisLogo,
         ];
 
         echo json_encode($retorno);
@@ -665,12 +746,12 @@
                             'rotulo' => 'Na Cidadania?',
                             'campo' => 'opiniao_cidadania',
                             'vetor' => [
-                                'Não Nacessita',
+                                'Não Necessita',
                                 'Sim Necessita'
                             ],
                             'dados' => $d->opiniao_cidadania,
                             'exibir' => [
-                                'Não Nacessita'=>false,
+                                'Não Necessita'=>false,
                                 'Sim Necessita'=>true
                             ],
                             'campo_destino'=>'opiniao_cidadania_descricao'
@@ -826,19 +907,20 @@
                         <label for="opiniao_outros">Outras Opiniões / Detalhes (na estrutura do governo)</label>
                     </div>
 
+                    
+
                 </div>
             </div>
         </div>
 
         <div style="padding-bottom:50px;">
 
-
             <div class="card border-warning mb-3">
                 <h5 class="card-header">Avaliação do Técnico</h5>
                 <div class="card-body">
 
                     <?php
-                    if($_SESSION['ProjectSeLogin']->perfil == 'adm'){
+                    if($_SESSION['ProjectSeLogin']->perfil == 'adm' or $_SESSION['ProjectSeLogin']->perfil == 'crd'){
                     ?>
                     <div class="form-floating mb-3">
                         <input type="text" name="data" required id="data" class="form-control" placeholder="Data da Pesquisa" value="<?=dataBr($d->data)?>">
@@ -846,13 +928,14 @@
                     </div>
                     <?php
                     }
+
                     if($_SESSION['ProjectSeLogin']->perfil != 'usr'){
                     ?>
                     <div class="form-floating mb-3">
                         <select name="monitor_social" required id="monitor_social" class="form-control" >
                             <option value="">::Selecione o Profissional</option>
                             <?php
-                                $q = "select * from usuarios where situacao = '1' and perfil = 'usr' order by nome asc";
+                                $q = "select * from usuarios where situacao = '1' and deletado != '1' and perfil = 'usr' order by nome asc";
                                 $r = mysqli_query($con, $q);
                                 while($s = mysqli_fetch_object($r)){
                             ?>
@@ -866,11 +949,10 @@
                     <?php
                     }
                     ?>
-
                     <div class="form-floating mb-3">
                         <?=montaRadio([
                             'rotulo' => 'Situação da Pesquisa',
-                            'campo' => 'situacao',
+                            'campo' => 'recepcao_entrevistado',
                             'vetor' => [
                                 'Ruim',
                                 'Bom',
@@ -901,7 +983,6 @@
 
                 </div>
             </div>
-
 
             <div obs class="form-floating mb-3">
                 <textarea name="observacoes" id="observacoes" class="form-control" placeholder="Observações" ><?=$d->observacoes?></textarea>
@@ -942,7 +1023,7 @@
             $("#telefone").mask('(99) 99999-9999');
             $("#cep").mask('99999-999');
             $("#data_nascimento").mask('99/99/9999');
-            // $("#data").mask('99/99/9999');
+            $("#data").mask('99/99/9999');
 
 
             var filtro = (municipio, tipo) => {
@@ -1039,6 +1120,8 @@
                             dataType:"JSON",
                             data: campos,
                             success:function(dados){
+
+                                console.log(dados)
                                 $.alert('Dados atualizados com sucesso!');
 
                                 <?php

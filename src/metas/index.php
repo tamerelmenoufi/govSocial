@@ -7,12 +7,28 @@
       // $query = "delete from metas where codigo = '{$_POST['delete']}'";
       $query = "update metas set deletado = '1' where codigo = '{$_POST['delete']}'";
       mysqli_query($con, $query);
+      sisLog(
+        [
+            'query' => $query,
+            'file' => $_SERVER["PHP_SELF"],
+            'sessao' => $_SESSION,
+            'registro' => $_POST['delete']
+        ]
+    );
       mysqli_query($con, "update se set meta = '0', monitor_social = '0' where meta = '{$_POST['delete']}' and situacao not in('c', 'f', 'n')");
     }
 
     if($_POST['situacao']){
       $query = "update metas set situacao = '{$_POST['opc']}' where codigo = '{$_POST['situacao']}'";
       mysqli_query($con, $query);
+      sisLog(
+        [
+            'query' => $query,
+            'file' => $_SERVER["PHP_SELF"],
+            'sessao' => $_SESSION,
+            'registro' => $_POST['situacao']
+        ]
+    );
       exit();
     }
 
@@ -129,6 +145,97 @@
       </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row mt-3">
+      <div class="col">
+        <div class="card">
+          <h5 class="card-header">
+            <div class="d-flex justify-content-between">
+              <span>Lista de Metas expiradas (<?=$u->nome?>)</span>
+            </div>
+          </h5>
+          <div class="card-body">
+
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Código</th>
+                  <th scope="col">Município</th>
+                  <th scope="col">Bairro/Comunidade</th>
+                  <th scope="col">Zona</th>
+                  <th scope="col">Data</th>
+                  <th scope="col">Previsão de metas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $query = "select a.*, 
+                                   b.municipio as municipio_nome, 
+                                   c.descricao as bairro_comunidade_nome
+                              from metas a 
+                                   left join municipios b on a.municipio = b.codigo 
+                                   left join bairros_comunidades c on a.bairro_comunidade = c.codigo 
+                              where usuario = '{$_SESSION['usuario']}' and a.deletado = '1'
+                              order by a.codigo desc";
+                  $result = mysqli_query($con, $query);
+                  while($d = mysqli_fetch_object($result)){
+
+                    $grupos = str_replace("|",",",$d->grupos);
+                    $grupos = explode(",",$grupos);
+                    $grupos = array_filter($grupos);
+                    $grupos = implode(", ", $grupos);
+                    list($qt) = mysqli_fetch_row(mysqli_query($con, "select count(*) from se where codigo in(".(($grupos)?:0).")"));
+                    
+                ?>
+                <tr>
+                  <td><?=str_pad($d->codigo, 6, "0", STR_PAD_LEFT)?></td>
+                  <td><?=$d->municipio_nome?></td>
+                  <td><?=$d->bairro_comunidade_nome?></td>
+                  <td><?=$d->zona?></td>
+                  <td><?=dataBr($d->data)?></td>
+                  <td>
+                      <button
+                        class="btn btn-warning"
+                        beneficiados_historico="<?=$d->codigo?>"
+                        data-bs-toggle="offcanvas"
+                        href="#offcanvasDireita"
+                        role="button"
+                        aria-controls="offcanvasDireita"
+                        <?=((!$qt)?'disabled':false)?>
+                      >
+                        <?=$qt?> Beneficiado(s)
+                      </button>
+
+                  </td>
+                </tr>
+                <?php
+                  }
+                ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -175,6 +282,25 @@
                 }
             })
         })
+
+
+        $("button[beneficiados_historico]").click(function(){
+            meta = $(this).attr("beneficiados_historico");
+            $(".LateralDireita").html('');
+            $.ajax({
+                url:"src/metas/beneficiados_historico.php",
+                type:"POST",
+                data:{
+                  meta
+                },
+                success:function(dados){
+                    $(".LateralDireita").html(dados);
+                }
+            })
+        })
+
+
+
 
         $(".voltar").click(function(){
           Carregando();

@@ -65,7 +65,14 @@
                   <td>
 
                   <div class="mb-3 form-check">
-                    <input type="checkbox" <?=(($d->meta == $_SESSION['meta'])?'checked':false)?> class="form-check-input opcoes" value="<?=$d->codigo?>" id="opc<?=$d->codigo?>">
+                    <input 
+                            type="checkbox" 
+                            <?=(($d->meta == $_SESSION['meta'])?'checked':false)?> 
+                            <?=((in_array($d->situacao,['c', 'n', 'f'])?'disabled':false))?> 
+                            class="form-check-input opcoes" 
+                            value="<?=$d->codigo?>" 
+                            id="opc<?=$d->codigo?>"
+                    >
                     <label class="form-check-label filtroDados" for="opc<?=$d->codigo?>">
                       <?=$d->nome?><br>
                       <small style="color:#a1a1a1"><?=str_replace("  ", " ",trim($d->endereco)).(($d->cep)?"- ".trim($d->cep):false)?></small>
@@ -90,6 +97,8 @@
 
   $(function(){
     Carregando('none');
+
+    console.log(`<?=$query?>`)
 
 
     $('#pesquisa').keyup(function(e) {
