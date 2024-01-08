@@ -44,3 +44,11 @@
         <label for="bairro_comunidade">Bairro/Comunidade</label>
     </div>
 </div>
+
+
+<script>
+    $(function(){
+        Carregando('none')
+        
+    })
+</script>
