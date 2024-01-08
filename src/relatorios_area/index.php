@@ -85,6 +85,8 @@
         $total = ($total + $d->qt);
         $metas = $d->metas;
     }
+
+
     $exibe = [
         'p' => 'Pendente',
         'i' => 'Iniciado',
@@ -137,6 +139,39 @@
             ?>
         </table>
     </div>
+
+
+    <?php
+    $query = "select *, count(*) as qt from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' and meta > 0 group by situacao";
+    $result = mysqli_query($con, $query);
+    $r = [];
+    $total = 0;
+    while($d = mysqli_fetch_object($result)){
+        $r[$d->situacao] = $d->qt;
+        $total = ($total + $d->qt);
+        $metas = $d->metas;
+    }
+    ?>
+    <div class="col-md-6">
+        <table class="table">
+            <?php
+            foreach($exibe as $i => $v){
+            ?>
+            <tr>
+                <th style="white-space: nowrap;">
+                    <?=$v?>
+                </th>
+                <td class="w-100">
+                    <div title="<?=($r[$i]*1)." beneficiado(s) que correspondem a ".number_format(($r[$i]*100/$total),0,false,false)?>% do total de <?=$total?> beneficiado(s)." style="color:#fff; cursor:pointer; opacity:0.7; text-align:center; background-color:blue; padding:3px; border-radius:7px; width:<?=number_format(($r[$i]*100/$total),0,false,false)?>%"><?=number_format(($r[$i]*100/$total),0,false,false)?>%</div>
+                    <span style="color:#a1a1a1; font-size:12px;"><?=($r[$i]*1)." beneficiado(s) que correspondem a ".number_format(($r[$i]*100/$total),0,false,false)?>% do total de <?=$total?> beneficiado(s).</span>
+                </td>
+            </tr>
+            <?php
+            }
+            ?>
+        </table>
+    </div>
+    
 </div>
 
 <script>
