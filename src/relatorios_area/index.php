@@ -67,10 +67,8 @@
             </select>
             <label for="bairro_comunidade">Bairro/Comunidade</label>
         </div>
-    </div>
-    <div class="col mb-3 p-2">
-        <button class="btn btn-success buscar">Buscar</button>
-    </div>    
+        <button class="btn btn-success buscar" style="height:100%">Buscar</button>
+    </div> 
 </div>
 
 
