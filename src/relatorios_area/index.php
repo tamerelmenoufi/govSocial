@@ -79,7 +79,7 @@
     $query = "select *, count(*) as qt, (select count(*) from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' and meta > 0 and meta in('i','p')) as metas from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' group by situacao";
     $result = mysqli_query($con, $query);
     $r = [];
-    $total = 0;
+    $total = 1;
     while($d = mysqli_fetch_object($result)){
         $r[$d->situacao] = $d->qt;
         $total = ($total + $d->qt);
@@ -146,13 +146,12 @@
     $query = "select *, count(*) as qt from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' and meta > 0 and meta in('i','p') group by situacao";
     $result = mysqli_query($con, $query);
     $r = [];
-    $total = 0;
+    $total = 1;
     while($d = mysqli_fetch_object($result)){
         $r[$d->situacao] = $d->qt;
         $total = ($total + $d->qt);
         $metas = $d->metas;
     }
-    $total = (($total)?:1);
     ?>
     <div class="col-md-6">
         <h5 style="margin:5px; margin-top:20px;">Desempenho das Metas em Produção</h5>
