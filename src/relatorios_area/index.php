@@ -56,7 +56,7 @@
             <select required name="bairro_comunidade" id="bairro_comunidade" class="form-control" placeholder="Bairro">
                 <option value="">::Selecione a Localização::</option>
                 <?php
-                    $q = "select * from bairros_comunidades where municipio = '{$d->municipio}' ".(($d->zona)?" and tipo = '{$d->zona}'":false)." order by descricao";
+                    $q = "select * from bairros_comunidades where municipio = '{$_POST['municipio']}' ".(($_POST['zona'])?" and tipo = '{$_POST['zona']}'":false)." order by descricao";
                     $r = mysqli_query($con, $q);
                     while($s = mysqli_fetch_object($r)){
                 ?>
