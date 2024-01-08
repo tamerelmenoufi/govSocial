@@ -104,13 +104,13 @@
     }
     ?>
     <div class="col p-1">
-        <div class="cartao">
+        <div class="cartao" style="background-color:green">
             <span>Total</span>
             <p><?=$total*1?></p>
         </div>
     </div>   
     <div class="col p-1">
-        <div class="cartao">
+        <div class="cartao" style="background-color:orange">
             <span>Em Metas</span>
             <p><?=$metas*1?></p>
         </div>
