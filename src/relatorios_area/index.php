@@ -124,7 +124,7 @@
             foreach($exibe as $i => $v){
             ?>
             <tr>
-                <th><?=$v?></th>
+                <th style="white-space: nowrap;"><?=$v?></th>
                 <td class="w-100">
                     <div style="background-color:blue; padding:10px; border-radius:3px; margin:5px; width:<?=number_format(($r[$i]*100/$total),0,false,false)?>%"></div>
                 </td>
