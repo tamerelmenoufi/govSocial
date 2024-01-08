@@ -68,6 +68,9 @@
             <label for="bairro_comunidade">Bairro/Comunidade</label>
         </div>
     </div>
+    <div class="col mb-3 p-2">
+        <button class="btn btn-success buscar">Buscar</button>
+    </div>    
 </div>
 
 
@@ -154,7 +157,7 @@
             filtro(municipio, zona);
         });
 
-        $("#bairro_comunidade").change(function(){
+        $(".buscar").click(function(){
             zona = $("#zona").val();
             municipio = $("#municipio").val();
             bairro_comunidade = $("#bairro_comunidade").val();
