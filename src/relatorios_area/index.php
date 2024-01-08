@@ -126,7 +126,7 @@
             <tr>
                 <th style="white-space: nowrap;"><?=$v?></th>
                 <td class="w-100">
-                    <div style="color:#fff; opacity:0.7; text-align:center; background-color:blue; padding:3px; border-radius:7px; margin:5px; width:<?=number_format(($r[$i]*100/$total),0,false,false)?>%"><?=number_format(($r[$i]*100/$total),0,false,false)?>%</div>
+                    <div title="<?=number_format(($r[$i]*100/$total),0,false,false)?>%" style="color:#fff; opacity:0.7; text-align:center; background-color:blue; padding:3px; border-radius:7px; margin:5px; width:<?=number_format(($r[$i]*100/$total),0,false,false)?>%"><?=number_format(($r[$i]*100/$total),0,false,false)?>%</div>
                 </td>
             </tr>
             <?php
