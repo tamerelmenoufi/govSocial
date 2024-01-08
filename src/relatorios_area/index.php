@@ -143,7 +143,7 @@
 
 
     <?php
-    $query = "select *, count(*) as qt from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' and meta > 0 group by situacao";
+    $query = "select *, count(*) as qt from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' and meta > 0 and meta in('i','p') group by situacao";
     $result = mysqli_query($con, $query);
     $r = [];
     $total = 0;
