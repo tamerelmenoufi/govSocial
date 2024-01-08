@@ -152,6 +152,7 @@
         $total = ($total + $d->qt);
         $metas = $d->metas;
     }
+    $total = (($total)?:1);
     ?>
     <div class="col-md-6">
         <h5 style="margin:5px; margin-top:20px;">Desempenho das Metas em Produção</h5>
