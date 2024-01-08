@@ -121,7 +121,7 @@
 
 <div class="row g-0">
     <div class="col-md-6">
-        <h5>Desempenho das Situações da Pesquisa em Geral</h5>
+        <h5 style="margin:5px; margin-top:20px;">Desempenho das Situações da Pesquisa em Geral</h5>
         <table class="table">
             <?php
             foreach($exibe as $i => $v){
@@ -154,7 +154,7 @@
     }
     ?>
     <div class="col-md-6">
-        <h5>Desempenho das Metas em Produção</h5>
+        <h5 style="margin:5px; margin-top:20px;">Desempenho das Metas em Produção</h5>
         <table class="table">
             <?php
             foreach($exibe as $i => $v){
