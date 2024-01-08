@@ -3,7 +3,7 @@
 ?>
 <div class="row g-0 p-3">
     <div class="col">
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3 p-2">
             <select required name="municipio" id="municipio" class="form-control" placeholder="Município">
                 <option value="">::Selecione o Município::</option>
                 <?php
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="col">
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3 p-2">
             <select required name="zona" id="zona" class="form-control" placeholder="Zona">
                 <option value="">::Selecione a Zona::</option>
                 <option value="Urbano" <?=(($d->zona == 'Urbano')?'selected':false)?>>Urbano</option>
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="col">
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3 p-2">
             <select required name="bairro_comunidade" id="bairro_comunidade" class="form-control" placeholder="Bairro">
                 <option value="">::Selecione a Localização::</option>
                 <?php
