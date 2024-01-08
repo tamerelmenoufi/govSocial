@@ -52,5 +52,41 @@
     $(function(){
         Carregando('none')
 
+
+        var filtro = (bairro_comunidade, zona) => {
+        if(!municipio){
+                $("#bairro_comunidade").html('<option value="">::Selecione a Localização::</option>');
+                return false;
+            }
+            if(!zona){
+                $("#bairro_comunidade").html('<option value="">::Selecione a Localização::</option>');
+                return false;
+            }
+            $.ajax({
+                url:"src/metas/filtro.php",
+                type:"POST",
+                data:{
+                    municipio,
+                    zona,
+                    acao:'bairro_comunidade'
+                },
+                success:function(dados){
+                    $("#bairro_comunidade").html(dados);
+                }
+            });
+        }
+
+        $("#zona").change(function(){
+            municipio = $("#municipio").val();
+            zona = $(this).val();
+            filtro(municipio, zona);
+        });
+
+        $("#municipio").change(function(){
+            zona = $("#zona").val();
+            municipio = $(this).val();
+            filtro(municipio, zona);
+        });
+
     })
 </script>
