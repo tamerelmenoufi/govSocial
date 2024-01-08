@@ -73,12 +73,14 @@
 
 <div class="row g-0">
     <?php
-    for($i=0;$i<6;$i++){
+    $query = "select *, count(*) as qt from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['local']}' group by situacao";
+    $result = mysqli_query($con, $query);
+    while($d = mysqli_fetch_object($result)){
     ?>
     <div class="col-2 p-1">
         <div class="cartao">
-            <span>Beneficiários Realizados</span>
-            <p>546</p>
+            <span><?=$d->situacao?></span>
+            <p><?=$d->qt?></p>
         </div>
     </div>
     <?php
