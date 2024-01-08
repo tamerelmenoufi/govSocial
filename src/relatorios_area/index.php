@@ -72,11 +72,10 @@
 
 
 <div class="row g-0">
-    <div class="col-2">
+    <div class="col">
 dois
     </div>
-    <div class="col-8">
-    <div class="row">
+
     <?php
     $query = "select *, count(*) as qt from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' group by situacao";
     $result = mysqli_query($con, $query);
@@ -104,9 +103,7 @@ dois
     <?php
     }
     ?>
-    </div>
-    </div>
-    <div class="col-2">
+    <div class="col">
         <div class="cartao">
             <span>Total</span>
             <p><?=$total*1?></p>
