@@ -75,14 +75,25 @@
     <?php
     $query = "select *, count(*) as qt from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' group by situacao";
     $result = mysqli_query($con, $query);
+    $r = [];
     while($d = mysqli_fetch_object($result)){
+        $r[$d->situacao] = $d->qt;
+    }
+    $exibe = [
+        'p' => 'Pendente',
+        'i' => 'Iniciado',
+        'n' => 'Não Encontrado',
+        'c' => 'Concluido',
+        'f' => 'Finalizado'
+    ];
+    foreach($exibe as $i => $v){
     ?>
     <div class="col-2 p-1">
         <div class="cartao">
-            <span><?=$d->situacao?></span>
-            <p><?=$d->qt?></p>
+            <span><?=$v?></span>
+            <p><?=$r[$i]*1?></p>
         </div>
-    </div>
+    </div>    
     <?php
     }
     ?>
@@ -134,6 +145,7 @@
             bairro_comunidade = $("#bairro_comunidade").val();
             
             if(zona && municipio && bairro_comunidade){
+                Carregando()
                 $.ajax({
                     url:"src/relatorios_area/index.php",
                     type:"POST",
@@ -143,7 +155,8 @@
                         bairro_comunidade,
                     },
                     success:function(dados){
-                    $("#paginaHome").html(dados);
+                        Carregando('none')
+                        $("#paginaHome").html(dados);
                     }
                 });
             }else{
