@@ -33,7 +33,7 @@
                     $r = mysqli_query($con, $q);
                     while($s = mysqli_fetch_object($r)){
                 ?>
-                <option value="<?=$s->codigo?>" <?=(($d->municipio == $s->codigo)?'selected':false)?>><?=$s->municipio?></option>
+                <option value="<?=$s->codigo?>" <?=(($_POST['municipio'] == $s->codigo)?'selected':false)?>><?=$s->municipio?></option>
                 <?php
                     }
                 ?>
@@ -45,8 +45,8 @@
         <div class="form-floating mb-3 p-2">
             <select required name="zona" id="zona" class="form-control" placeholder="Zona">
                 <option value="">::Selecione a Zona::</option>
-                <option value="Urbano" <?=(($d->zona == 'Urbano')?'selected':false)?>>Urbano</option>
-                <option value="Rural" <?=(($d->zona == 'Rural')?'selected':false)?>>Rural</option>
+                <option value="Urbano" <?=(($_POST['zona'] == 'Urbano')?'selected':false)?>>Urbano</option>
+                <option value="Rural" <?=(($_POST['zona'] == 'Rural')?'selected':false)?>>Rural</option>
             </select>
             <label for="zona">Zona</label>
         </div>
@@ -60,7 +60,7 @@
                     $r = mysqli_query($con, $q);
                     while($s = mysqli_fetch_object($r)){
                 ?>
-                <option value="<?=$s->codigo?>" <?=(($d->bairro_comunidade == $s->codigo)?'selected':false)?>><?=$s->descricao?> (<?=$s->tipo?>)</option>
+                <option value="<?=$s->codigo?>" <?=(($_POST['bairro_comunidade'] == $s->codigo)?'selected':false)?>><?=$s->descricao?> (<?=$s->tipo?>)</option>
                 <?php
                     }
                 ?>
