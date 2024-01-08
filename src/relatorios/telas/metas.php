@@ -103,7 +103,7 @@
 
                 <div class="col-md-2 mb-3">
                     <div class="cartao">
-                        <span>Em Metas</span>
+                        <span>Beneficiários Realizados</span>
                         <p><?=($D['g']*1)?></p>
                         <div>
                             <i acao='editarXXX' filtro='' class="fa-solid fa-up-right-from-square"></i>
