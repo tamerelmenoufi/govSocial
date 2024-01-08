@@ -52,8 +52,8 @@
         </div>
     </div>
     <div class="col">
-        <div class="d-flex flex-row">
-            <div class="form-floating mb-3 p-2">
+        <div class="d-flex flex-row mb-3 p-2">
+            <div class="form-floating">
                 <select required name="bairro_comunidade" id="bairro_comunidade" class="form-control" placeholder="Bairro">
                     <option value="">::Selecione a Localização::</option>
                     <?php
