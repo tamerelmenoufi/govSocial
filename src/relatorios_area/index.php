@@ -1,6 +1,28 @@
 <?php
     include("{$_SERVER['DOCUMENT_ROOT']}/vns/govSocial/lib/includes.php");
 ?>
+
+<style>
+    .cartao{
+        position:relative;
+        width:99%;
+        min-height:90px;
+        background-color:#459adb;
+        border-radius:10px;
+        color:#fff;
+    }
+    .cartao span{
+        font-size:10px;
+        margin-left:10px;
+    }
+    .cartao p{
+        font-size:25px;
+        font-weight:bold;
+        text-align:center;
+        padding-top:0px;
+        padding-bottom:15px;
+    }
+</style>
 <div class="row g-0 p-3">
     <div class="col">
         <div class="form-floating mb-3 p-2">
@@ -46,6 +68,22 @@
             <label for="bairro_comunidade">Bairro/Comunidade</label>
         </div>
     </div>
+</div>
+
+
+<div class="row g-0">
+    <?php
+    for($i=0;$i<6;$i++){
+    ?>
+    <div class="col-2 p-1">
+        <div class="cartao">
+            <span>Beneficiários Realizados</span>
+            <p>546</p>
+        </div>
+    </div>
+    <?php
+    }
+    ?>
 </div>
 
 <script>
