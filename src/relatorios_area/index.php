@@ -73,7 +73,7 @@
 
 <div class="row g-0">
     <?php
-    $query = "select *, count(*) as qt from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['local']}' group by situacao";
+    $query = "select *, count(*) as qt from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' group by situacao";
     $result = mysqli_query($con, $query);
     while($d = mysqli_fetch_object($result)){
     ?>
@@ -126,6 +126,31 @@
             zona = $("#zona").val();
             municipio = $(this).val();
             filtro(municipio, zona);
+        });
+
+        $("#bairro_comunidade").change(function(){
+            zona = $("#zona").val();
+            municipio = $("#municipio").val();
+            bairro_comunidade = $("#bairro_comunidade").val();
+            
+            if(zona && municipio && bairro_comunidade){
+                $.ajax({
+                    url:"src/relatorios_area/index.php",
+                    type:"POST",
+                    data:{
+                        zona,
+                        municipio,
+                        bairro_comunidade,
+                    },
+                    success:function(dados){
+                    $("#paginaHome").html(dados);
+                    }
+                });
+            }else{
+                $.alert('Favor informe a localidade!');
+            }
+
+
         });
 
     })
