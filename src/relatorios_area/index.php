@@ -72,8 +72,11 @@
 
 
 <div class="row g-0">
-    <div class="col">
-dois
+    <div class="col p-1">
+        <div class="cartao">
+            <span>Total</span>
+            <p><?=$total*1?></p>
+        </div>
     </div>
 
     <?php
@@ -103,7 +106,7 @@ dois
     <?php
     }
     ?>
-    <div class="col">
+    <div class="col p-1">
         <div class="cartao">
             <span>Total</span>
             <p><?=$total*1?></p>
