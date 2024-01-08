@@ -72,21 +72,15 @@
 
 
 <div class="row g-0">
-    <div class="col p-1">
-        <div class="cartao">
-            <span>Total</span>
-            <p><?=$total*1?></p>
-        </div>
-    </div>
-
     <?php
-    $query = "select *, count(*) as qt from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' group by situacao";
+    $query = "select *, count(*) as qt, (select count(*) from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' and meta > 0) as metas from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' group by situacao";
     $result = mysqli_query($con, $query);
     $r = [];
     $total = 0;
     while($d = mysqli_fetch_object($result)){
         $r[$d->situacao] = $d->qt;
         $total = ($total + $d->qt);
+        $metas = $d->metas;
     }
     $exibe = [
         'p' => 'Pendente',
@@ -111,7 +105,13 @@
             <span>Total</span>
             <p><?=$total*1?></p>
         </div>
-    </div>    
+    </div>   
+    <div class="col p-1">
+        <div class="cartao">
+            <span>Em Metas</span>
+            <p><?=$metas*1?></p>
+        </div>
+    </div> 
 </div>
 
 <script>
