@@ -52,22 +52,24 @@
         </div>
     </div>
     <div class="col">
-        <div class="form-floating mb-3 p-2">
-            <select required name="bairro_comunidade" id="bairro_comunidade" class="form-control" placeholder="Bairro">
-                <option value="">::Selecione a Localização::</option>
-                <?php
-                    $q = "select * from bairros_comunidades where municipio = '{$_POST['municipio']}' ".(($_POST['zona'])?" and tipo = '{$_POST['zona']}'":false)." order by descricao";
-                    $r = mysqli_query($con, $q);
-                    while($s = mysqli_fetch_object($r)){
-                ?>
-                <option value="<?=$s->codigo?>" <?=(($_POST['bairro_comunidade'] == $s->codigo)?'selected':false)?>><?=$s->descricao?> (<?=$s->tipo?>)</option>
-                <?php
-                    }
-                ?>
-            </select>
-            <label for="bairro_comunidade">Bairro/Comunidade</label>
+        <div class="d-flex flex-row">
+            <div class="form-floating mb-3 p-2">
+                <select required name="bairro_comunidade" id="bairro_comunidade" class="form-control" placeholder="Bairro">
+                    <option value="">::Selecione a Localização::</option>
+                    <?php
+                        $q = "select * from bairros_comunidades where municipio = '{$_POST['municipio']}' ".(($_POST['zona'])?" and tipo = '{$_POST['zona']}'":false)." order by descricao";
+                        $r = mysqli_query($con, $q);
+                        while($s = mysqli_fetch_object($r)){
+                    ?>
+                    <option value="<?=$s->codigo?>" <?=(($_POST['bairro_comunidade'] == $s->codigo)?'selected':false)?>><?=$s->descricao?> (<?=$s->tipo?>)</option>
+                    <?php
+                        }
+                    ?>
+                </select>
+                <label for="bairro_comunidade">Bairro/Comunidade</label>
+            </div>
+            <button class="btn btn-success buscar" style="height:100%">Buscar</button>
         </div>
-        <button class="btn btn-success buscar" style="height:100%">Buscar</button>
     </div> 
 </div>
 
