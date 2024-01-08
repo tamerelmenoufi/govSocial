@@ -1,7 +1,7 @@
 <?php
     include("{$_SERVER['DOCUMENT_ROOT']}/vns/govSocial/lib/includes.php");
 ?>
-<div class="row">
+<div class="row g-0 p-3">
     <div class="col">
         <div class="form-floating mb-3">
             <select required name="municipio" id="municipio" class="form-control" placeholder="Município">
