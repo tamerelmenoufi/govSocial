@@ -107,7 +107,10 @@ dois
     </div>
     </div>
     <div class="col-2">
-dois
+        <div class="cartao">
+            <span>Total</span>
+            <p><?=$total*1?></p>
+        </div>
     </div>    
 </div>
 
