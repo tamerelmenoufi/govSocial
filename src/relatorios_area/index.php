@@ -127,6 +127,7 @@
                 <th style="white-space: nowrap;"><?=$v?></th>
                 <td class="w-100">
                     <div title="<?=($r[$i]*1)." beneficiado(s) que correspondem a ".number_format(($r[$i]*100/$total),0,false,false)?>% do total de <?=$total?> beneficiado(s)." style="color:#fff; cursor:pointer; opacity:0.7; text-align:center; background-color:blue; padding:3px; border-radius:7px; width:<?=number_format(($r[$i]*100/$total),0,false,false)?>%"><?=number_format(($r[$i]*100/$total),0,false,false)?>%</div>
+                    <span style="color:#a1a1a1; font-size:10px;"><?=($r[$i]*1)." beneficiado(s) que correspondem a ".number_format(($r[$i]*100/$total),0,false,false)?>% do total de <?=$total?> beneficiado(s).</span>
                 </td>
             </tr>
             <?php
