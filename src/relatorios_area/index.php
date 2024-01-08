@@ -126,7 +126,7 @@
             <tr>
                 <th><?=$v?></th>
                 <td>
-                    <div style="background-color:blue; padding:5px; margin:5px; width:<?=number_format($total/$r[$i]*100,0,false,false)?>px"></div>
+                    <div style="background-color:blue; padding:5px; margin:5px; width:<?=number_format($total*$r[$i]/100,0,false,false)?>px"></div>
                 </td>
             </tr>
             <?php
