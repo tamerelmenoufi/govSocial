@@ -72,12 +72,19 @@
 
 
 <div class="row g-0">
+    <div class="col-2">
+
+    </div>
+    <div class="col-8">
+    <div class="row">
     <?php
     $query = "select *, count(*) as qt from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' group by situacao";
     $result = mysqli_query($con, $query);
     $r = [];
+    $total = 0;
     while($d = mysqli_fetch_object($result)){
         $r[$d->situacao] = $d->qt;
+        $total = ($total + $d->qt);
     }
     $exibe = [
         'p' => 'Pendente',
@@ -97,6 +104,11 @@
     <?php
     }
     ?>
+    </div>
+    </div>
+    <div class="col-2">
+
+    </div>    
 </div>
 
 <script>
