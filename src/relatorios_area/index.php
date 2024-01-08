@@ -73,7 +73,7 @@
 
 <div class="row g-0">
     <div class="col-2">
-
+dois
     </div>
     <div class="col-8">
     <div class="row">
@@ -95,7 +95,7 @@
     ];
     foreach($exibe as $i => $v){
     ?>
-    <div class="col-2 p-1">
+    <div class="col p-1">
         <div class="cartao">
             <span><?=$v?></span>
             <p><?=$r[$i]*1?></p>
@@ -107,7 +107,7 @@
     </div>
     </div>
     <div class="col-2">
-
+dois
     </div>    
 </div>
 
