@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <div class="row mb-1" style="opacity:0.3">
+    <div class="row mb-1">
       <div class="col">
         <a url="src/relatorios_area/index.php" class="text-decoration-none" data-bs-dismiss="offcanvas" aria-label="Close">
           <i class="fa-solid fa-chart-line col-1"></i> <span class="col-11">Relatórios por Área</span>
