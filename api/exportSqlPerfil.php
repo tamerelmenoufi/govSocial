@@ -28,6 +28,7 @@
         'opiniao_assistencia_social',
         'opiniao_seguranca',
         'opiniao_esporte_lazer',
+        'dados_localizacao',
         'codigo'
     ];
 
