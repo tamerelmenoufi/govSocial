@@ -4,7 +4,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST))
     $_POST = json_decode(file_get_contents('php://input'), true);
 
-    if(!$_POST['perfil'][0]['codigo']) $_POST['perfil'][0]['codigo'] = 248;
+    // if(!$_POST['perfil'][0]['codigo']) $_POST['perfil'][0]['codigo'] = 248;
 
 
     $q = "select * from metas where data >= DATE_ADD(NOW(), INTERVAL -7 DAY) and data <= NOW() and usuario = '{$_POST['perfil'][0]['codigo']}' and situacao = '1' and deletado != '1'";
