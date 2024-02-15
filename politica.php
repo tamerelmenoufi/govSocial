@@ -78,5 +78,3 @@ capazes de causar danos anteriormente mencionados.</li> </ul>
 se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em 
 nosso site.</p> <p>Esta política é efetiva a partir de <strong>Setembro</strong>/<strong>2021</strong>.</p>
 
-<p>Esta política é efetiva a partir de <strong>Setembro</strong>/<strong>2021</strong>.</p>
-
