@@ -51,9 +51,7 @@ conteúdos e da informação que o VNS Comércio oferece no site e com caráter 
 Não difundir propaganda ou conteúdo de natureza racista, xenofóbica, ou casas de apostas online (ex.: Betano), jogos de sorte e azar, qualquer tipo de pornografia 
 ilegal, de apologia ao terrorismo ou contra os direitos humanos;</li> <li>C) Não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) do VNS 
 Comércio, de seus fornecedores ou terceiros, para introduzir ou disseminar vírus informáticos ou quaisquer outros sistemas de hardware ou software que sejam 
-capazes de causar danos anteriormente mencionados.</li> </ul> <h3>Mais informações</h3> <p>Esperemos que esteja esclarecido e, como mencionado anteriormente, 
-se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em 
-nosso site.</p> <p>Esta política é efetiva a partir de <strong>Setembro</strong>/<strong>2021</strong>.</p>
+capazes de causar danos anteriormente mencionados.</li> </ul>
 
 
 <h3>Aplicativo Gov+Social</h3> 
@@ -75,6 +73,10 @@ nosso site.</p> <p>Esta política é efetiva a partir de <strong>Setembro</stron
         automático da localização geográfica e integração com a base em núvem para atualização de informações e configuração da limitação de registros por meio 
         de metas periódicas.</li>
 </ul>
+
+<h3>Mais informações</h3> <p>Esperemos que esteja esclarecido e, como mencionado anteriormente, 
+se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em 
+nosso site.</p> <p>Esta política é efetiva a partir de <strong>Setembro</strong>/<strong>2021</strong>.</p>
 
 <p>Esta política é efetiva a partir de <strong>Setembro</strong>/<strong>2021</strong>.</p>
 
