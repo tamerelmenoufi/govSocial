@@ -54,3 +54,27 @@ Comércio, de seus fornecedores ou terceiros, para introduzir ou disseminar vír
 capazes de causar danos anteriormente mencionados.</li> </ul> <h3>Mais informações</h3> <p>Esperemos que esteja esclarecido e, como mencionado anteriormente, 
 se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em 
 nosso site.</p> <p>Esta política é efetiva a partir de <strong>Setembro</strong>/<strong>2021</strong>.</p>
+
+
+<h3>Aplicativo Gov+Social</h3> 
+<p>O projeto Gov+Social, trata-se de um sistema de registro de dados e informações de famílias Amazonenese localizadas nas diversão regiões e zonas do Estados, 
+    sendo cerca de 50% na capital do estado (Manaus) e 50% distribuidos nos demais municípios. São famílias de baixa rende e que necessitam de apoio para obter 
+    condições e garantias para a necessidade básica de sobrevivência.</p>
+
+<p>O Programa Gov+Social, foi desenvolvido especificamente para as atualizações dos cadastros deste grupo de famílias, com registro de todos os membros, com as 
+    informações básicas de identificação e socioeconomico.</p>
+
+<p>Por meio das informações a AADESAM (Agência Amazonense de Desenvolvimento Econômico, Social e Ambiental), atua nas ações necessárias para promover recursos 
+    básicos em atendimento as famílias registradas.</p>
+
+<p>O sistema funciona em duas versões:</p>
+
+<ul> 
+    <li>Sistema Web para gerenciamento e acompanhamento das ações;</li>
+    <li>Aplicativo mobile, utilizando recursos nativos e práticos dos aparelhos para registro de informações no modo on-line e off-line, utilização de registro 
+        automático da localização geográfica e integração com a base em núvem para atualização de informações e configuração da limitação de registros por meio 
+        de metas periódicas.</li>
+</ul>
+
+<p>Esta política é efetiva a partir de <strong>Setembro</strong>/<strong>2021</strong>.</p>
+
