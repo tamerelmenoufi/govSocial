@@ -202,8 +202,7 @@
                     $grupos = explode(",",$grupos);
                     $grupos = array_filter($grupos);
                     $grupos = implode(", ", $grupos);
-                    echo $q = "select count(*) from se where codigo in(".(($grupos)?:0).")";
-                    echo "<br>";
+                    $q = "select count(*) from se where codigo in(".(($grupos)?:0).")";
                     list($qt) = mysqli_fetch_row(mysqli_query($con, $q));
                     
                 ?>
