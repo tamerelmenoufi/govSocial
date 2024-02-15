@@ -198,7 +198,7 @@
                   $result = mysqli_query($con, $query);
                   while($d = mysqli_fetch_object($result)){
 
-                    $grupos = str_replace("|",",",$d->grupos);
+                    $grupos = str_replace(["|"," "],",",$d->grupos);
                     $grupos = explode(",",$grupos);
                     $grupos = array_filter($grupos);
                     $grupos = implode(", ", $grupos);
