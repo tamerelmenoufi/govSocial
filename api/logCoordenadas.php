@@ -31,7 +31,7 @@
 
         file_put_contents('logs/coord_comando-'.date("YmdHis").".txt", $comando);
 
-        mysqli_query($con, "UPDATE logLocation set data = STR_TO_DATE(FROM_UNIXTIME(dados->>'$.timestamp'/1000),"%Y-%m-%d %H:%i:%s") where data = 0");
-
 
     }
+
+    mysqli_query($con, "UPDATE logLocation set data = STR_TO_DATE(FROM_UNIXTIME(dados->>'$.timestamp'/1000),\"%Y-%m-%d %H:%i:%s\") where data = 0");
