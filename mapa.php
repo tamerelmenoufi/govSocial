@@ -3,7 +3,7 @@
     //SELECT *, STR_TO_DATE(FROM_UNIXTIME(dados->>'$.timestamp'/1000),"%Y-%m-%d %H:%i:%s") as data FROM `logLocation` where usuario = 248;
 
 
-    $query = "SELECT * FROM `logLocation` where usuario = 248 and FROM_UNIXTIME(dados->>'$.timestamp'/1000,\"%Y-%m-%d %H:%i:%s\") between '2024-02-17 00:00:00' and '2024-02-17 23:59:59' limit 43";
+    $query = "SELECT * FROM `logLocation` where usuario = 248 and FROM_UNIXTIME(dados->>'$.timestamp'/1000,\"%Y-%m-%d %H:%i:%s\") between '2024-02-17 00:00:00' and '2024-02-17 23:59:59' limit 44";
     $result = mysqli_query($con, $query);
     $i=0;
     while($d = mysqli_fetch_object($result)){
