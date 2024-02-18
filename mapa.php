@@ -69,7 +69,7 @@ function initMap() {
   const directionsRenderer = new google.maps.DirectionsRenderer();
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 6,
-    center: <?=$coordI?>,
+    center: "<?=$coordI?>",
   });
 
   directionsRenderer.setMap(map);
@@ -104,8 +104,8 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
   directionsService
     .route({
-      origin: <?=$coordi?>; //document.getElementById("start").value,
-      destination: <?=$coordf?>; //document.getElementById("end").value,
+      origin: "<?=$coordi?>"; //document.getElementById("start").value,
+      destination: "<?=$coordf?>"; //document.getElementById("end").value,
       waypoints: waypts,
       optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.DRIVING,
