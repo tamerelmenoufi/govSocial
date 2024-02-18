@@ -9,6 +9,7 @@
     while($d = mysqli_fetch_object($result)){
 
       $dados = json_decode($d->dados);
+
       if($i == 0) { 
         $coordI = "{lat: {$dados->coords->latitude}, lng: {$dados->coords->longitude}}"; 
         $coordi = "{$dados->coords->latitude}, {$dados->coords->longitude}";
@@ -18,6 +19,8 @@
       $coordf = "{$dados->coords->latitude}, {$dados->coords->longitude}";
 
       $coords[] = "{$dados->coords->latitude}, {$dados->coords->longitude}";
+
+      $I++;
 
     }
 
