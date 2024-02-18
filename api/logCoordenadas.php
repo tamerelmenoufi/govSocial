@@ -33,5 +33,3 @@
 
 
     }
-
-    mysqli_query($con, "UPDATE logLocation set data = STR_TO_DATE(FROM_UNIXTIME(dados->>'$.timestamp'/1000),\"%Y-%m-%d %H:%i:%s\") where data = 0");
