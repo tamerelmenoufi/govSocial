@@ -5,11 +5,19 @@
 
     $query = "SELECT * FROM `logLocation` where usuario = 248 and FROM_UNIXTIME(dados->>'$.timestamp'/1000,\"%Y-%m-%d %H:%i:%s\") between '2024-02-17 12:30:00' and '2024-02-17 13:10:00'";
     $result = mysqli_query($con, $query);
+    $i=0;
     while($d = mysqli_fetch_object($result)){
 
       $dados = json_decode($d->dados);
+      if($i == 0) { 
+        $coordI = "{lat: {$dados->coords->latitude}, lng: {$dados->coords->longitude}}"; 
+        $coordi = "{$dados->coords->latitude}, {$dados->coords->longitude}";
 
-      echo $dados->coords->latitude." & ".$dados->coords->longitude."<br>";
+      }
+
+      $coordf = "{$dados->coords->latitude}, {$dados->coords->longitude}";
+
+      $coords[] = "{$dados->coords->latitude}, {$dados->coords->longitude}";
 
     }
 
@@ -61,7 +69,7 @@ function initMap() {
   const directionsRenderer = new google.maps.DirectionsRenderer();
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 6,
-    center: { lat: 31.2604054, lng: 29.9872474 },
+    center: <?=$coordI?>,
   });
 
   directionsRenderer.setMap(map);
@@ -74,19 +82,30 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   const waypts = [];
   const checkboxArray = document.getElementById("waypoints");
 
-  for (let i = 0; i < checkboxArray.length; i++) {
-    if (checkboxArray.options[i].selected) {
+  // for (let i = 0; i < checkboxArray.length; i++) {
+  //   if (checkboxArray.options[i].selected) {
+  //     waypts.push({
+  //       location: checkboxArray[i].value,
+  //       stopover: false,
+  //     });
+  //   }
+  // }
+
+  <?php
+  for($i = 1; $i < count($coords) $i++){
+  ?>
       waypts.push({
-        location: checkboxArray[i].value,
+        location: <?=$$coords[$i]?>,
         stopover: false,
       });
-    }
+  <?php
   }
+  ?>
 
   directionsService
     .route({
-      origin: document.getElementById("start").value,
-      destination: document.getElementById("end").value,
+      origin: <?=$coordi?>; //document.getElementById("start").value,
+      destination: <?=$coordf?>; //document.getElementById("end").value,
       waypoints: waypts,
       optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.DRIVING,
