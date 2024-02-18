@@ -92,7 +92,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   // }
 
   <?php
-  for($i = 1; $i < 20; $i++){
+  for($i = 1; $i < count($coords); $i++){
   ?>
       waypts.push({
         location: "<?=$coords[$i]?>",
