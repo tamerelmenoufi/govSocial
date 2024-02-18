@@ -92,14 +92,14 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   // }
 
   <?php
-  for($i = 1; $i < count($coords); $i++){
-  ?>
-      waypts.push({
-        location: "<?=$coords[$i]?>",
-        stopover: false,
-      });
-  <?php
-  }
+  // for($i = 1; $i < count($coords); $i++){
+  // ?>
+  //     waypts.push({
+  //       location: "<?=$coords[$i]?>",
+  //       stopover: false,
+  //     });
+  // <?php
+  // }
   ?>
 
   directionsService
