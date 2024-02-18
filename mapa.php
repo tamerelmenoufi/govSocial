@@ -104,8 +104,8 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
   directionsService
     .route({
-      origin: "<?=$coordi?>"; //document.getElementById("start").value,
-      destination: "<?=$coordf?>"; //document.getElementById("end").value,
+      origin: "<?=$coordi?>", //document.getElementById("start").value,
+      destination: "<?=$coordf?>", //document.getElementById("end").value,
       waypoints: waypts,
       optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.DRIVING,
