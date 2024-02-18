@@ -20,7 +20,7 @@
 
       $coords[] = "{$dados->coords->latitude}, {$dados->coords->longitude}";
 
-      $I++;
+      $i++;
 
     }
 
