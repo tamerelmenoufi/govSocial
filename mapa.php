@@ -95,6 +95,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   // }
 
   <?php
+  /*
   for($i = 1; $i < count($coords); $i++){
   ?>
       waypts.push({
@@ -103,6 +104,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       });
   <?php
   }
+  //*/
   ?>
 
   directionsService
