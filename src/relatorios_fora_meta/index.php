@@ -121,7 +121,7 @@
     $(function(){
         Carregando('none')
 
-        $("#usuario").click(function(){
+        $("#usuario").change(function(){
             usuario = $(this).val();
             Carregando()
             $.ajax({
