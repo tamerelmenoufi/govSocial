@@ -57,19 +57,19 @@
 <div class="row g-0">
     <?php
     $query = "select *, count(*) as qt, (select count(*) from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' and meta > 0 and meta in('i','p')) as metas from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' group by situacao";
+    $query = "select *, count(*) as qt from se where 1 {$where} and meta = '0' and situacao in('f','c','n') group by situacao";
     $result = mysqli_query($con, $query);
     $r = [];
     $total = 0;
     while($d = mysqli_fetch_object($result)){
         $r[$d->situacao] = $d->qt;
         $total = ($total + $d->qt);
-        $metas = $d->metas;
     }
 
 
     $exibe = [
-        'p' => 'Pendente',
-        'i' => 'Iniciado',
+        // 'p' => 'Pendente',
+        // 'i' => 'Iniciado',
         'n' => 'Não Encontrado',
         'c' => 'Concluido',
         'f' => 'Finalizado'
@@ -91,17 +91,11 @@
             <p><?=$total*1?></p>
         </div>
     </div>   
-    <div class="col p-1">
-        <div class="cartao" style="background-color:orange">
-            <span>Em Metas</span>
-            <p><?=$metas*1?></p>
-        </div>
-    </div> 
 </div>
 
 <div class="row g-0">
-    <div class="col-md-6">
-        <h5 style="margin:5px; margin-top:20px;">Desempenho das Situações da Pesquisa em Geral</h5>
+    <div class="col-md-12">
+        <h5 style="margin:5px; margin-top:20px;">Desempenho das Situações da Pesquisa fora da Meta</h5>
         <table class="table">
             <?php
             foreach($exibe as $i => $v){
@@ -121,41 +115,6 @@
             ?>
         </table>
     </div>
-
-
-    <?php
-    $query = "select *, count(*) as qt from se where 1 {$where} and meta = '0' and situacao in('f','c','n') group by situacao";
-    $result = mysqli_query($con, $query);
-    $r = [];
-    $total = 0;
-    while($d = mysqli_fetch_object($result)){
-        $r[$d->situacao] = $d->qt;
-        $total = ($total + $d->qt);
-        $metas = $d->metas;
-    }
-    ?>
-    <div class="col-md-12">
-        <h5 style="margin:5px; margin-top:20px;">Desempenho fora das Metas</h5>
-        <table class="table">
-            <?php
-            foreach($exibe as $i => $v){
-                $dv = ($r[$i]*100/(($total)?:1));
-            ?>
-            <tr>
-                <th style="white-space: nowrap;">
-                    <?=$v?>
-                </th>
-                <td class="w-100">
-                    <div title="<?=($r[$i]*1)." beneficiado(s) que correspondem a ".number_format(($dv),0,false,false)?>% do total de <?=$total?> beneficiado(s)." style="color:#fff; cursor:pointer; opacity:0.9; text-align:center; background-color:orange; padding:3px; border-radius:7px; width:<?=number_format(($dv),0,false,false)?>%"><?=number_format(($dv),0,false,false)?>%</div>
-                    <span style="color:#a1a1a1; font-size:12px;"><?=($r[$i]*1)." beneficiado(s) que correspondem a ".number_format(($dv),0,false,false)?>% do total de <?=$total?> beneficiado(s).</span>
-                </td>
-            </tr>
-            <?php
-            }
-            ?>
-        </table>
-    </div>
-    
 </div>
 
 <script>
