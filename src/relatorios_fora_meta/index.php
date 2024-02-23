@@ -6,7 +6,7 @@
     }
 
     if($_SESSION['filtro_usuario']){
-        $where = " and monitor_social = '{$_SESSOIN['filtro_usuario']}' ";
+        $where = " and monitor_social = '{$_SESSION['filtro_usuario']}' ";
     }
 
 ?>
