@@ -56,8 +56,8 @@
 
 <div class="row g-0">
     <?php
-    $query = "select *, count(*) as qt, (select count(*) from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' and meta > 0 and meta in('i','p')) as metas from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' group by situacao";
-    echo $query = "select *, count(*) as qt from se where 1 {$where} and meta = '0' and situacao in('f','c','n') group by situacao";
+    // $query = "select *, count(*) as qt, (select count(*) from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' and meta > 0 and meta in('i','p')) as metas from se where municipio = '{$_POST['municipio']}' and bairro_comunidade = '{$_POST['bairro_comunidade']}' and local = '{$_POST['zona']}' group by situacao";
+    $query = "select *, count(*) as qt from se where 1 {$where} and meta = '0' and situacao in('f','c','n') group by situacao";
     $result = mysqli_query($con, $query);
     $r = [];
     $total = 0;
