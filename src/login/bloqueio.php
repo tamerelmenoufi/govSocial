@@ -116,7 +116,8 @@ include("{$_SERVER['DOCUMENT_ROOT']}/vns/govSocial/lib/includes.php");
 <div class="pagina">
     <div class="container">
         <div class="card card-container">
-            
+            <img id="profile-img" class="profile-img-card" src="img/logo.png" />
+            <p id="profile-name" class="profile-name-card"></p>
             <div class="text-center">
                 <h3>SISTEMA EM MANUTENÇÃO</h3>
                 <p style="color:#a1a1a1; font-size:14px;">O sistema encontra-se desativado com previsão indeterminada.</p>
