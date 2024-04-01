@@ -7,10 +7,13 @@
         exit();
     }
 
+    $_SESSION = []; //Bloqueio forçado
+
     if($_SESSION['ProjectSeLogin']){
         $url = "src/home/index.php";
     }else{
-        $url = "src/login/index.php";
+        // $url = "src/login/index.php";
+        $url = "src/login/bloqueio.php"; //tela de sistema bloqueado
     }
 ?>
 <!doctype html>
