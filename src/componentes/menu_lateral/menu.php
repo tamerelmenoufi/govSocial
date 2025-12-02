@@ -16,13 +16,13 @@
     <?php
     if($_SESSION['ProjectSeLogin']->perfil == 'adm' or $_SESSION['ProjectSeLogin']->perfil == 'crd'){
     ?>
-    <!-- <div class="row mb-1">
+    <div class="row mb-1">
       <div class="col">
         <a url="src/dashboard/index.php" class="text-decoration-none" data-bs-dismiss="offcanvas" aria-label="Close">
           <i class="fa-solid fa-chart-pie col-1"></i> <span class="col-11">Dashboard</span>
         </a>
       </div>
-    </div> -->
+    </div>
     <?php
     }
     ?>
