@@ -49,7 +49,7 @@ async function icones(local, qt, lat, lng){
     marker<?=$md5?> = new google.maps.Marker({
         position: { lat: lat, lng: lng },
         map:map<?=$md5?>,
-        icon:"img/pino.png",
+        //icon:"img/pino.png",
         title: qt + " Beneficiários em "+local,
         draggable:false,
     });
